@@ -1,0 +1,10 @@
+.env
+__pycache__/
+*.pyc
+clickhouse_data/.env
+*.log
+*.pid
+.vscode/ 
+.idea/
+*.pyo
+*.pyd 
