@@ -1,0 +1,30 @@
+version: '3.8'
+
+   services:
+     flask:
+       build: .
+       ports:
+         - "5000:5000"
+       environment:
+         - FLASK_ENV=development
+       volumes:
+         - .:/app
+       depends_on:
+         - clickhouse
+       env_file:
+         - .env
+
+     clickhouse:
+       image: clickhouse/clickhouse-server:24.3
+       ports:
+         - "8123:8123"
+         - "9000:9000"
+       volumes:
+         - clickhouse_data:/var/lib/clickhouse
+       environment:
+         - CLICKHOUSE_USER=myuser
+         - CLICKHOUSE_PASSWORD=mypassword
+         - CLICKHOUSE_DB=default
+
+   volumes:
+     clickhouse_data:
